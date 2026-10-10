@@ -1,229 +1,230 @@
-// const taskInput = document.querySelector("#taskInput");
-// const addBtn = document.querySelector("#addTaskBtn");
-// const priorityInput = document.querySelector("#priorityInput");
-// const categoryInput = document.querySelector("#categoryInput");
-// const taskList = document.querySelector("#taskList");
+const taskInput = document.querySelector("#taskInput");
+const addBtn = document.querySelector("#addTaskBtn");
+const priorityInput = document.querySelector("#priorityInput");
+const categoryInput = document.querySelector("#categoryInput");
+const taskList = document.querySelector("#taskList");
 
-// const totalTasks = document.querySelector("#totalTasks");
-// const completedTasks = document.querySelector("#completedTasks");
-// const pendingTasks = document.querySelector("#pendingTasks");
-// const completionRate = document.querySelector("#completionRate");
+const totalTasks = document.querySelector("#totalTasks");
+const completedTasks = document.querySelector("#completedTasks");
+const pendingTasks = document.querySelector("#pendingTasks");
+const completionRate = document.querySelector("#completionRate");
 
-// const progressText = document.querySelector("#progressText");
-// const progressFill = document.querySelector("#progressFill");
-// const filterButtons = document.querySelectorAll(".filter-btn");
+const progressText = document.querySelector("#progressText");
+const progressFill = document.querySelector("#progressFill");
+const filterButtons = document.querySelectorAll(".filter-btn");
 
-// const timerDisplay = document.querySelector("#timerDisplay");
-// const startTimer = document.querySelector("#startTimer");
-// const resetTimer = document.querySelector("#resetTimer");
+const timerDisplay = document.querySelector("#timerDisplay");
+const startTimer = document.querySelector("#startTimer");
+const resetTimer = document.querySelector("#resetTimer");
 
-// let tasks = JSON.parse(localStorage.getItem("dailyTasks")) || [];
-// let currentFilter = "all";
+let tasks = JSON.parse(localStorage.getItem("dailyTasks")) || [];
+let currentFilter = "all";
 
-// let timerSeconds = 25 * 60;
-// let timerInterval = null;
+let timerSeconds = 25 * 60;
+let timerInterval = null;
 
-// // Save tasks in Local Storage
-// function saveTasks() {
-//     localStorage.setItem("dailyTasks", JSON.stringify(tasks));
-// }
+// Save tasks in Local Storage
+function saveTasks() {
+    localStorage.setItem("dailyTasks", JSON.stringify(tasks));
+}
 
-// // Add a new task
-// function addTask() {
-//     const taskName = taskInput.value.trim();
+// Add a new task
+function addTask() {
+    const taskName = taskInput.value.trim();
 
-//     if (taskName === "") {
-//         alert("Please enter a task!");
-//         return;
-//     }
+    if (taskName === "") {
+        alert("Please enter a task!");
+        return;
+    }
 
-//     const task = {
-//         id: Date.now(),
-//         name: taskName,
-//         priority: priorityInput.value,
-//         category: categoryInput.value,
-//         completed: false
-//     };
+    const task = {
+        id: Date.now(),
+        name: taskName,
+        priority: priorityInput.value,
+        category: categoryInput.value,
+        completed: false
+    };
 
-//     tasks.push(task);
+    tasks.push(task);
 
-//     saveTasks();
-//     renderTasks();
+    saveTasks();
+    renderTasks();
 
-//     taskInput.value = "";
-// }
+    taskInput.value = "";
+}
 
-// // Display tasks on the page
-// function renderTasks() {
-//     taskList.innerHTML = "";
+// Display tasks on the page
+function renderTasks() {
+    taskList.innerHTML = "";
 
-//     const filteredTasks = tasks.filter(function (task) {
-//         if (currentFilter === "pending") {
-//             return !task.completed;
-//         }
+    const filteredTasks = tasks.filter(function (task) {
+        if (currentFilter === "pending") {
+            return !task.completed;
+        }
 
-//         if (currentFilter === "completed") {
-//             return task.completed;
-//         }
+        if (currentFilter === "completed") {
+            return task.completed;
+        }
 
-//         return true;
-//     });
+        return true;
+    });
 
-//     if (filteredTasks.length === 0) {
-//         const emptyMessage = document.createElement("p");
-//         emptyMessage.className = "empty-state";
-//         emptyMessage.textContent = tasks.length === 0
-//             ? "No tasks yet. Add your first task!"
-//             : "No tasks found in this filter.";
+    if (filteredTasks.length === 0) {
+        const emptyMessage = document.createElement("p");
+        emptyMessage.className = "empty-state";
+        emptyMessage.textContent = tasks.length === 0
+            ? "No tasks yet. Add your first task!"
+            : "No tasks found in this filter.";
 
-//         taskList.appendChild(emptyMessage);
-//     }
+        taskList.appendChild(emptyMessage);
+    }
 
-//     filteredTasks.forEach(function (task) {
-//         const taskElement = document.createElement("div");
-//         taskElement.className = "task-item";
+    filteredTasks.forEach(function (task) {
+        const taskElement = document.createElement("div");
+        taskElement.className = "task-item";
 
-//         if (task.completed) {
-//             taskElement.classList.add("completed");
-//         }
+        if (task.completed) {
+            taskElement.classList.add("completed");
+        }
 
-//         const taskDetails = document.createElement("div");
-//         taskDetails.className = "task-details";
+        const taskDetails = document.createElement("div");
+        taskDetails.className = "task-details";
 
-//         const taskTitle = document.createElement("h3");
-//         taskTitle.textContent = task.name;
+        const taskTitle = document.createElement("h3");
+        taskTitle.textContent = task.name;
 
-//         const taskInfo = document.createElement("p");
-//         taskInfo.textContent =
-//             "Priority: " + task.priority +
-//             " | Category: " + task.category;
+        const taskInfo = document.createElement("p");
+        taskInfo.textContent =
+            "Priority: " + task.priority +
+            " | Category: " + task.category;
 
-//         taskDetails.append(taskTitle, taskInfo);
+        taskDetails.append(taskTitle, taskInfo);
 
-//         const completeBtn = document.createElement("button");
-//         completeBtn.textContent = task.completed
-//             ? "Undo"
-//             : "Complete";
+        const completeBtn = document.createElement("button");
+        completeBtn.textContent = task.completed
+            ? "Undo"
+            : "Complete";
 
-//         completeBtn.addEventListener("click", function () {
-//             task.completed = !task.completed;
-//             saveTasks();
-//             renderTasks();
-//         });
+        completeBtn.addEventListener("click", function () {
+            task.completed = !task.completed;
+            saveTasks();
+            renderTasks();
+        });
 
-//         const deleteBtn = document.createElement("button");
-//         deleteBtn.textContent = "Delete";
+        const deleteBtn = document.createElement("button");
+        deleteBtn.textContent = "Delete";
 
-//         deleteBtn.addEventListener("click", function () {
-//             tasks = tasks.filter(function (item) {
-//                 return item.id !== task.id;
-//             });
+        deleteBtn.addEventListener("click", function () {
+            tasks = tasks.filter(function (item) {
+                return item.id !== task.id;
+            });
 
-//             saveTasks();
-//             renderTasks();
-//         });
+            saveTasks();
+            renderTasks();
+        });
 
-//         const taskActions = document.createElement("div");
-//         taskActions.className = "task-actions";
-//         taskActions.append(completeBtn, deleteBtn);
+        const taskActions = document.createElement("div");
+        taskActions.className = "task-actions";
+        taskActions.append(completeBtn, deleteBtn);
 
-//         taskElement.append(taskDetails, taskActions);
-//         taskList.appendChild(taskElement);
-//     });
+        taskElement.append(taskDetails, taskActions);
+        taskList.appendChild(taskElement);
+    });
 
-//     updateStats();
-// }
+    updateStats();
+}
 
-// // Update task statistics and progress
-// function updateStats() {
-//     const total = tasks.length;
+// Update task statistics and progress
+function updateStats() {
+    const total = tasks.length;
 
-//     const completed = tasks.filter(function (task) {
-//         return task.completed;
-//     }).length;
+    const completed = tasks.filter(function (task) {
+        return task.completed;
+    }).length;
 
-//     const pending = total - completed;
+    const pending = total - completed;
 
-//     const rate = total === 0
-//         ? 0
-//         : Math.round((completed / total) * 100);
+    const rate = total === 0
+        ? 0
+        : Math.round((completed / total) * 100);
 
-//     totalTasks.textContent = total;
-//     completedTasks.textContent = completed;
-//     pendingTasks.textContent = pending;
-//     completionRate.textContent = rate + "%";
+    totalTasks.textContent = total;
+    completedTasks.textContent = completed;
+    pendingTasks.textContent = pending;
+    completionRate.textContent = rate + "%";
 
-//     progressText.textContent = rate + "% completed";
-//     progressFill.style.width = rate + "%";
+    progressText.textContent = rate + "% completed";
+    progressFill.style.width = rate + "%";
 
-//     const progressBar = document.querySelector(".progress-bar");
+    const progressBar = document.querySelector(".progress-bar");
 
-//     if (progressBar) {
-//         progressBar.setAttribute("aria-valuenow", rate);
-//     }
-// }
+    if (progressBar) {
+        progressBar.setAttribute("aria-valuenow", rate);
+    }
+}
 
-// // Add button click
-// addBtn.addEventListener("click", addTask);
+// Add button click
+addBtn.addEventListener("click", addTask);
 
-// // Press Enter to add a task
-// taskInput.addEventListener("keydown", function (event) {
-//     if (event.key === "Enter") {
-//         addTask();
-//     }
-// });
+// Press Enter to add a task
+taskInput.addEventListener("keydown", function (event) {
+    if (event.key === "Enter") {
+        addTask();
+    }
+});
 
-// // Filter tasks
-// filterButtons.forEach(function (button) {
-//     button.addEventListener("click", function () {
-//         currentFilter = button.dataset.filter;
+// Filter tasks
+filterButtons.forEach(function (button) {
+    button.addEventListener("click", function () {
+        currentFilter = button.dataset.filter;
 
-//         filterButtons.forEach(function (btn) {
-//             btn.classList.remove("active");
-//         });
+        filterButtons.forEach(function (btn) {
+            btn.classList.remove("active");
+        });
 
-//         button.classList.add("active");
-//         renderTasks();
-//     });
-// });
-//       startTimer.addEventListener("click", function () {
-//     if (timerInterval !== null) {
-//         clearInterval(timerInterval);
-//         timerInterval = null;
-//         startTimer.textContent = "Resume";
-//         return;
-//     }
+        button.classList.add("active");
+        renderTasks();
+    });
+});
+  
+startTimer.addEventListener("click", function () {
+    if (timerInterval !== null) {
+        clearInterval(timerInterval);
+        timerInterval = null;
+        startTimer.textContent = "Resume";
+        return;
+    }
 
-//     startTimer.textContent = "Pause";
+    startTimer.textContent = "Pause";
 
-//     timerInterval = setInterval(function () {
-//         if (timerSeconds > 0) {
-//             timerSeconds--;
+    timerInterval = setInterval(function () {
+        if (timerSeconds > 0) {
+            timerSeconds--;
 
-//             const minutes = Math.floor(timerSeconds / 60);
-//             const seconds = timerSeconds % 60;
+            const minutes = Math.floor(timerSeconds / 60);
+            const seconds = timerSeconds % 60;
 
-//             timerDisplay.textContent =
-//                 String(minutes).padStart(2, "0") + ":" +
-//                 String(seconds).padStart(2, "0");
-//         } else {
-//             clearInterval(timerInterval);
-//             timerInterval = null;
-//             startTimer.textContent = "Start";
-//             alert("Focus session completed!");
-//         }
-//     }, 1000);
-//     // Reset the focus timer
-// resetTimer.addEventListener("click", function () {
-//     clearInterval(timerInterval);
+            timerDisplay.textContent =
+                String(minutes).padStart(2, "0") + ":" +
+                String(seconds).padStart(2, "0");
+        } else {
+            clearInterval(timerInterval);
+            timerInterval = null;
+            startTimer.textContent = "Start";
+            alert("Focus session completed!");
+        }
+    }, 1000);
 
-//     timerInterval = null;
-//     timerSeconds = 25 * 60;
+    // Reset the focus timer
+resetTimer.addEventListener("click", function () {
+    clearInterval(timerInterval);
 
-//     timerDisplay.textContent = "25:00";
-//     startTimer.textContent = "Start";
-// });
-// });
+    timerInterval = null;
+    timerSeconds = 25 * 60;
 
-// // Load saved tasks when the page opens
-// renderTasks();
+    timerDisplay.textContent = "25:00";
+    startTimer.textContent = "Start";
+});
+});
+// Load saved tasks when the page opens
+renderTasks();

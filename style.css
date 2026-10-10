@@ -701,192 +701,133 @@ select:focus-visible {
 /* =========================================
    17. MOBILE RESPONSIVENESS
 ========================================= */
-/* ===== MOBILE RESPONSIVE FIX ===== */
 
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
+@media (max-width: 600px) {
+
+    .main {
+        padding: 28px 16px 40px;
+    }
+
+    .page-header {
+        margin-bottom: 25px;
+        padding-bottom: 22px;
+    }
+
+    .heading {
+        font-size: 2.15rem;
+        letter-spacing: -0.8px;
+    }
+
+    .subtitle {
+        font-size: 0.9rem;
+    }
+
+    .stats-container {
+        gap: 12px;
+        margin-bottom: 22px;
+    }
+
+    .stat-card {
+        min-height: 120px;
+        padding: 18px 15px;
+        border-radius: 15px;
+    }
+
+    .stat-card h3 {
+        font-size: 0.8rem;
+        margin-bottom: 10px;
+    }
+
+    .stat-card p {
+        font-size: 1.8rem;
+    }
+
+    .content {
+        grid-template-columns: 1fr;
+        gap: 12px;
+        padding: 16px;
+        border-radius: 16px;
+    }
+
+    input,
+    select,
+    .btn {
+        min-height: 49px;
+    }
+
+    .filters {
+        gap: 6px;
+        margin: 22px 0;
+    }
+
+    .filter-btn {
+        flex: 1;
+        padding: 10px 8px;
+        font-size: 0.82rem;
+    }
+
+    .progress-section {
+        padding: 21px 18px;
+        margin-bottom: 30px;
+        border-radius: 16px;
+    }
+
+    .progress-info {
+        align-items: flex-start;
+        margin-bottom: 15px;
+    }
+
+    .progress-info h3 {
+        font-size: 0.92rem;
+    }
+
+    #progressText {
+        font-size: 0.8rem;
+    }
+
+    .task-list-header h2 {
+        font-size: 1.5rem;
+    }
+
+    .task-list {
+        grid-template-columns: 1fr;
+        gap: 13px;
+    }
+
+    .empty-state {
+        padding: 38px 16px;
+    }
+
+    .focus-section {
+        padding: 28px 18px;
+        border-radius: 19px;
+    }
+
+    .focus-section h2 {
+        font-size: 1.55rem;
+    }
+
+    .timer-display {
+        margin: 24px 0;
+    }
+
+    .timer-buttons button {
+        min-width: 105px;
+    }
 }
 
-html {
-  width: 100%;
-  max-width: 100%;
-  overflow-x: clip;
-}
 
-body {
-  width: 100%;
-  max-width: 100%;
-  margin: 0;
-  overflow-x: clip;
-}
+/* =========================================
+   18. REDUCED MOTION PREFERENCE
+========================================= */
 
-img {
-  max-width: 100%;
-  height: auto;
-}
+@media (prefers-reduced-motion: reduce) {
 
-@media (max-width: 768px) {
-  body {
-    font-size: 16px;
-  }
-
-  .heading {
-    font-size: clamp(2.2rem, 9vw, 3.2rem);
-    line-height: 1.1;
-    overflow-wrap: anywhere;
-  }
-
-  .subtitle {
-    font-size: 1.05rem;
-    line-height: 1.6;
-  }
-
-  .stats-container {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 12px;
-    width: 100%;
-    min-width: 0;
-  }
-
-  .stat-card {
-    width: 100%;
-    min-width: 0;
-    max-width: 100%;
-    padding: 16px 12px;
-    overflow-wrap: anywhere;
-  }
-
-  .stat-card h3 {
-    font-size: 0.95rem;
-    line-height: 1.4;
-  }
-
-  .stat-card p {
-    font-size: 1.8rem;
-    overflow-wrap: anywhere;
-  }
-
-  .content {
-    display: flex;
-    flex-direction: column;
-    align-items: stretch;
-    gap: 12px;
-    width: 100%;
-    min-width: 0;
-    max-width: 100%;
-  }
-
-  .content input,
-  .content select,
-  .content button {
-    display: block;
-    width: 100%;
-    min-width: 0;
-    max-width: 100%;
-    margin: 0;
-    font-size: 1rem;
-  }
-
-  .filters {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    gap: 8px;
-    width: 100%;
-    min-width: 0;
-  }
-
-  .filter-btn {
-    flex: 1 1 auto;
-    min-width: 0;
-    padding: 12px 10px;
-    white-space: normal;
-  }
-
-  .progress-section,
-  .task-list-section,
-  .focus-section {
-    width: 100%;
-    min-width: 0;
-    max-width: 100%;
-  }
-
-  .progress-info {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    gap: 8px;
-  }
-
-  .task-list {
-    width: 100%;
-    min-width: 0;
-  }
-
-  .task-item {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 12px;
-    width: 100%;
-    min-width: 0;
-  }
-
-  .task-details {
-    flex: 1 1 150px;
-    min-width: 0;
-    overflow-wrap: anywhere;
-  }
-
-  .task-actions {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-    max-width: 100%;
-  }
-
-  .task-actions button {
-    max-width: 100%;
-  }
-
-  .timer-display {
-    max-width: 100%;
-    font-size: clamp(2rem, 10vw, 3rem);
-  }
-
-  .timer-buttons {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-  }
-
-  .timer-buttons button {
-    flex: 1 1 100px;
-    min-width: 0;
-  }
-}
-
-@media (max-width: 380px) {
-  .heading {
-    font-size: 2rem;
-  }
-
-  .stat-card {
-    padding: 12px 8px;
-  }
-
-  .stat-card h3 {
-    font-size: 0.85rem;
-  }
-
-  .stat-card p {
-    font-size: 1.5rem;
-  }
-
-  .filter-btn {
-    padding: 10px 6px;
-    font-size: 0.9rem;
-  }
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+    }
 }
