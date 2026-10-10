@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Basic page settings -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Browser tab title -->
+    <title>Daily Task Goals | Productivity Dashboard</title>
+
+    <!-- Connect CSS file -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Main dashboard container -->
+    <div class="main">
+
+        <!-- Page heading -->
+        <header class="page-header">
+            <h1 class="heading">Daily Task Goals</h1>
+            <p class="subtitle">
+                Focus on what matters. Make every day count.
+            </p>
+        </header>
+
+
+        <!-- Dashboard statistics -->
+        <!-- JavaScript will update these numbers later -->
+        <section class="stats-container">
+
+            <div class="stat-card">
+                <h3>Total Tasks</h3>
+                <p id="totalTasks">0</p>
+            </div>
+
+            <div class="stat-card">
+                <h3>Completed</h3>
+                <p id="completedTasks">0</p>
+            </div>
+
+            <div class="stat-card">
+                <h3>Pending Tasks</h3>
+                <p id="pendingTasks">0</p>
+            </div>
+
+            <div class="stat-card">
+                <h3>Completion Rate</h3>
+                <p id="completionRate">0%</p>
+            </div>
+
+        </section>
+
+
+        <!-- Task input form -->
+        <!-- User enters a task, priority and category here -->
+        <section class="content">
+
+            <input
+                type="text"
+                id="taskInput"
+                placeholder="Add a new task..."
+                aria-label="Enter task name"
+            >
+
+            <!-- Choose task priority -->
+            <select id="priorityInput" aria-label="Select task priority">
+                <option value="low">Low Priority</option>
+                <option value="medium">Medium Priority</option>
+                <option value="high">High Priority</option>
+            </select>
+
+            <!-- Choose task category -->
+            <select id="categoryInput" aria-label="Select task category">
+                <option value="study">Study</option>
+                <option value="coding">Coding</option>
+                <option value="personal">Personal</option>
+                <option value="other">Other</option>
+            </select>
+
+            <!-- Add task button -->
+            <button type="button" class="btn" id="addTaskBtn">
+                Add Task
+            </button>
+
+        </section>
+
+
+        <!-- Filter tasks by their status -->
+        <section class="filters" aria-label="Filter tasks">
+
+            <button type="button" class="filter-btn active" data-filter="all">
+                All
+            </button>
+
+            <button type="button" class="filter-btn" data-filter="pending">
+                Pending
+            </button>
+
+            <button type="button" class="filter-btn" data-filter="completed">
+                Completed
+            </button>
+
+        </section>
+
+
+        <!-- Daily progress bar -->
+        <!-- Its percentage and fill will be updated with JavaScript -->
+        <section class="progress-section">
+
+            <div class="progress-info">
+                <h3>Daily Progress</h3>
+                <p id="progressText">0% completed</p>
+            </div>
+
+            <div
+                class="progress-bar"
+                role="progressbar"
+                aria-label="Daily task completion"
+                aria-valuemin="0"
+                aria-valuemax="100"
+                aria-valuenow="0"
+            >
+                <div class="progress-fill" id="progressFill"></div>
+            </div>
+
+        </section>
+
+
+        <!-- Task list heading -->
+        <section class="task-list-section">
+
+            <div class="task-list-header">
+                <h2>My Tasks</h2>
+                <p>Keep moving forward, one task at a time.</p>
+            </div>
+
+            <!-- Tasks will appear inside this container -->
+            <div class="task-list" id="taskList">
+
+                <!-- Initial message shown when there are no tasks -->
+                <div class="empty-state" id="emptyState">
+                    <h3>No Tasks Yet</h3>
+                    <p>
+                        Add your first task and start making progress!
+                    </p>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- Focus timer section -->
+        <!-- Timer functionality will be added with JavaScript -->
+        <section class="focus-section">
+
+            <h2>Focus Session</h2>
+            <p>Stay focused on what matters.</p>
+
+            <!-- Initial timer value: 25 minutes -->
+            <div class="timer-display" id="timerDisplay">
+                25:00
+            </div>
+
+            <!-- Timer controls -->
+            <div class="timer-buttons">
+                <button type="button" id="startTimer">
+                    Start
+                </button>
+
+                <button type="button" id="resetTimer">
+                    Reset
+                </button>
+            </div>
+
+        </section>
+
+    </div>
+
+    <!-- Connect JavaScript file -->
+    <script src="script.js"></script>
+
+</body>
+</html>
